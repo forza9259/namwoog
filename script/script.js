@@ -17,28 +17,51 @@ $('header').on('mouseout',function(){
 })
 
 
+
 let brnum = 0;
+$('.branchImg>div').hide();
+$('.branchText').hide();
 $('.branchImg>div').eq(0).show();
+$('.branchText').eq(0).show();
 $('.branchBox>div').on('mouseover',function(){
     $('.branchImg>div').stop().fadeOut(100);
+    $('.branchText').stop().fadeOut(100);
     brnum = $(this).index();
     $('.branchImg>div').eq(brnum).stop().fadeIn();
+    $('.branchText').eq(brnum).stop().fadeIn();
 })
 
 
 let crnum = 0;
 $('.careerImg>div').hide();
+$('.crTitle>div').hide();
+$('.crName>div').hide();
+$('.crTitle>div').eq(0).show();
+$('.crName>div').eq(0).show();
 $('.careerImg>div').eq(0).show();
 
 function slideRight(){
-    $('.careerImg>div').fadeOut();
-    $('.careerImg>div').eq((crnum+1)%3).fadeIn();
+    $('.careerImg>div').stop().fadeOut(300);
+    $('.crTitle>div').stop().fadeOut(300);
+    $('.crName>div').stop().fadeOut(300);
+    $('.careerImg>div').eq((crnum+1)%4).stop().fadeIn();
+    if($('.careerImg>div').eq((crnum+1)%4).hasClass('apart') === true){
+        $('.crTitle>div').eq(0).stop().fadeIn();
+        console.log('apart')
+    }else if($('.careerImg>div').eq((crnum+1)%4).hasClass('stadium')=== true){
+        $('.crTitle>div').eq(1).stop().fadeIn();
+        console.log('stadium')
+    }else if($('.careerImg>div').eq((crnum+1)%4).hasClass('hotel')=== true){
+        $('.crTitle>div').eq(2).stop().fadeIn();
+        console.log('hotel')
+    }
+    $('.crName>div').eq((crnum+1)%4).stop().fadeIn();
     crnum++
 }
 
 function slideLeft(){
     $('.careerImg>div').fadeOut();
-    $('.careerImg>div').eq((crnum-1)%3).fadeIn();
+    $('.careerImg>div').eq((crnum-1)%4).fadeIn();
     crnum--;
 }
 
